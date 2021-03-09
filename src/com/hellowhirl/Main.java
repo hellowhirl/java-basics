@@ -8,36 +8,45 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        // decalre constants (avoid magic numbers)
-        final byte MONTHS_IN_YEAR = 12;
-        final byte PERCENT = 100;
+        // comparison operators
+        int x = 1;
+        int y = 1;
+        System.out.println(x == y); // returns true
+        System.out.println(x != y); // returns false
+        System.out.println(x >= y); // returns true
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Principal: ");
-        int principal = scanner.nextInt(); // int is enough (long too big - 64 bits)
+        int temperature = 12;
+        boolean isWarm = temperature > 20 && temperature < 30;
+        System.out.println(isWarm); // false
 
-        System.out.print("Annual Interest Rate: ");
-        float annualInterest = scanner.nextFloat(); // float is sufficient because interest rate has only a few decimal points
-        float monthly = (annualInterest/PERCENT) / MONTHS_IN_YEAR;
+        boolean hasHighIncome = true;
+        boolean hasGoodCredit = true;
+        boolean hasCriminalRecord = false; // in this case we use not (!) operator to check
+        boolean isEligible = (hasHighIncome || hasGoodCredit) && !hasCriminalRecord; // to approve loan
 
-        System.out.print("Period (Years): ");
-        byte y = scanner.nextByte(); // byte is sufficient to store the number 30 or anything smaller
-        int numberOfPayments = y * MONTHS_IN_YEAR; // int is sufficient (32 bits)
+        int temp = 2;
+        if (temp > 30) {
+            System.out.println("It's a hot day");
+            System.out.println("Drink plenty of water");
+        }
+        else if (temp > 20) // works with curly braces as well
+            System.out.println("Beatiful day");
+        else
+            System.out.println("Cold day");
 
-        double top = monthly * (Math.pow(1 + monthly, numberOfPayments));
-        double bottom = (Math.pow(1 + monthly, numberOfPayments)) - 1;
-        double total = principal * (top / bottom);
+        int income = 120_000;
+        boolean hasGreatSalary = false; // simply declare first, and initialize with below if/else statement
+        if (income > 100_000)
+            hasGreatSalary = true;
+        System.out.println(hasGreatSalary);
 
-        NumberFormat currency = NumberFormat.getCurrencyInstance(java.util.Locale.US);
-        String currencyResult = currency.format(total); // method part of NumberFormat
+        int secondIncome = 90_000;
+        boolean elegantWayToCode = (secondIncome > 100_000); // with parenthesis it's clear that this is boolean statement
+        System.out.println("Elegant: " + elegantWayToCode);
 
-        // Principal = 100000;
-        // Annual Interest Rate = 3.92;
-        // Period (Years) = 30;
-        // Mortgage: $472.81
-
-
-        System.out.println("Mortgage: " + currencyResult);
+        int moreIncome = 140_000;
+        String className = className = moreIncome > 100_000 ? "Elite" : "Economy";
+        System.out.println(className);
     }
 }
 
