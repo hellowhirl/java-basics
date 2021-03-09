@@ -15,3 +15,5 @@ To invoke Java Virtual Machine (JVM) manually:
     java com.hellowhirl.Main
 
 - When we run a program from InteliJ all these steps are hidden from us
+
+"Programming and problem sovling is all about trade offs""
