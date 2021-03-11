@@ -1,41 +1,63 @@
 package com.hellowhirl;
 
-import java.awt.*;
-// classes automatically imported when we use them in our code
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
-        //loops - when we know ahead of time how many time we want to execute statements
+        // decalre constants (avoid magic numbers)
+        final byte MONTHS_IN_YEAR = 12;
+        final byte PERCENT = 100;
 
-        for (int i = 0; i < 5; i++)
-            System.out.println("Hello World " + i);
+        Scanner scanner = new Scanner(System.in);
+        int principal;
+        while (true) {
+            System.out.print("Principal ($1K - $1M): ");
+            principal = scanner.nextInt(); // int is enough (long too big - 64 bits)
 
-        for (int j = 5; j >= 1; j--)
-            System.out.println("Hello World " + j);
-
-        // while loops - better when we don't know how many times we want to repeat something
-
-        Scanner scanner = new Scanner(System.in); // better to put Scanner object outside of while loop (only need one)
-        String input = "";
-        while (!input.equals("quit")) {
-            System.out.print("Input: ");
-            input = scanner.next().toLowerCase(); // ensures that command executes regardless of case entered by user
-            System.out.println(input); // echo back what user enters
+            if (principal < 1_000 || principal > 1_000_000) {
+                System.out.println("Enter a value greater than $1000 and less than or equal to $1,000,000");
+            }
+            else break;
         }
 
-        // do while loop - gets executed at least once (use case is rare)
+        float annualInterest;
+        while (true) {
+            System.out.print("Annual Interest Rate: ");
+            annualInterest = scanner.nextFloat(); // float is sufficient because interest rate has only a few decimal points
 
-        do {
-            // code gets executed at least once
-            System.out.println("Do while loop");
-        } while (input == "will only continue if while loop evalutes to true");
+            if (annualInterest <= 0 || annualInterest > 30) {
+                System.out.println("Enter a value greater than 0 and less than or equal to 30");
+                continue;
+            }
+            else break;
+        }
+        float monthly = (annualInterest/PERCENT) / MONTHS_IN_YEAR;
+
+        byte years; // byte is sufficient to store the number 30 or anything smaller
+        while (true) {
+            System.out.print("Period (Years): ");
+            years = scanner.nextByte();
+
+            if (years <= 0 || years > 30) {
+                System.out.println("Enter a value greater than 0 and less than or equal to 30");
+            }
+            else break;
+        }
+
+        int numberOfPayments = years * MONTHS_IN_YEAR; // int is sufficient (32 bits)
+        double top = monthly * (Math.pow(1 + monthly, numberOfPayments));
+        double bottom = (Math.pow(1 + monthly, numberOfPayments)) - 1;
+        double total = principal * (top / bottom);
+
+        NumberFormat currency = NumberFormat.getCurrencyInstance(java.util.Locale.US);
+        String currencyResult = currency.format(total); // method part of NumberFormat
+
+        // Principal = 100000;
+        // Annual Interest Rate = 3.92;
+        // Period (Years) = 30;
+        // Mortgage: $472.81
+
+        System.out.println("Mortgage: " + currencyResult);
     }
 }
-
-
-
-
-
-
