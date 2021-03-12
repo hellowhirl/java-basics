@@ -17,3 +17,10 @@ To invoke Java Virtual Machine (JVM) manually:
 - When we run a program from InteliJ all these steps are hidden from us
 
 "Programming and problem sovling is all about trade offs""
+
+## Clean Coding
+
+Ideally our methods should be between 5 - 10 lines of code (no more than 20)
+
+- Extracting methods: group related code together
+- Reptiitve pattersn: refactor 
