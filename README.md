@@ -22,5 +22,13 @@ To invoke Java Virtual Machine (JVM) manually:
 
 Ideally our methods should be between 5 - 10 lines of code (no more than 20)
 
-- Extracting methods: group related code together
-- Reptiitve pattersn: refactor 
+Measures to take:
+
+- Extracting methods when there are groups of related code together
+- Refactor repetitive patterns 
+
+IntelliJ allows us to refactor method by highlighting related code and selecting:
+
+`Refactor -> Extract1 Method`
+
+- We will get prompted for name of method, parameters, and see preview
