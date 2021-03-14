@@ -74,11 +74,27 @@ XXX DON'T DO THESE XXX
     
 - Frames: shows methods called in reverse order - know as the `Call Stack`
 
+### Packaging a Java Application
 
+This if for deploying command line applications (programs)
 
+We need to package the program into a .JAR file (Java Archive)
 
+File -> Project Structure
 
+- Then go to Artifacts and click + button
+  - Select JAR -> From modules with dependencies...
+  
+- Select Main class (usually), then click OK, then OK
 
+- To build go to Build -> Build Artifacts : File.jar -> Build
+
+To run the program:
+
+- go to `out` folder and right click on .jar file and run in terminal
+- Then run below command in terminal
+  
+`$ java -jar HelloWorld.jar`
 
 
 
