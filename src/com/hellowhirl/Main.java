@@ -11,16 +11,21 @@ public class Main {
         byte years = (byte) readNumber("Period (Years): ", 0, 30);
 
         double total = calculateMortgage(principal, annualInterest, years);
-
-        NumberFormat currency = NumberFormat.getCurrencyInstance(java.util.Locale.US);
-        String currencyResult = currency.format(total); // method part of NumberFormat
+        String convertedBalance = convertToCurrency(total);
 
         // Principal = 100000;
         // Annual Interest Rate = 3.92;
         // Period (Years) = 30;
         // Mortgage: $472.81
 
-        System.out.println("Mortgage: " + currencyResult);
+        System.out.println("--------");
+        System.out.println("MORTGAGE");
+        System.out.println("--------");
+        System.out.println("Monthly Payments: " + convertedBalance);
+        System.out.println(" ");
+        System.out.println("PAYMENT SCHEDULE");
+        System.out.println("----------------");
+        System.out.println(calculateRemainingBalance(principal, annualInterest, years));
     }
 
     public static double readNumber(String prompt, double min, double max) {
@@ -48,17 +53,48 @@ public class Main {
         final byte MONTHS_IN_YEAR = 12;
         final byte PERCENT = 100;
 
-        float monthly = (annualInterest/PERCENT) / MONTHS_IN_YEAR;
+        float monthly = (annualInterest / PERCENT) / MONTHS_IN_YEAR;
         short numberOfPayments = (short) (years * MONTHS_IN_YEAR); // short is sufficient (16 bits)
 
         double top = monthly * (Math.pow(1 + monthly, numberOfPayments));
         double bottom = (Math.pow(1 + monthly, numberOfPayments)) - 1;
-        double total = principal * (top / bottom);
+        return principal * (top / bottom);
+    }
 
-        return total;
+    public static String convertToCurrency(double value) {
+        NumberFormat currency = NumberFormat.getCurrencyInstance(java.util.Locale.US);
+        return currency.format(value); // method part of NumberFormat
+    }
+
+    public static String calculateRemainingBalance(
+            int principal,
+            float annualInterest,
+            byte years
+    ) {
+        // decalre constants (avoid magic numbers)
+        final byte MONTHS_IN_YEAR = 12;
+        final byte PERCENT = 100;
+
+        float monthly = (annualInterest / PERCENT) / MONTHS_IN_YEAR;
+        short numberOfPayments = (short) (years * MONTHS_IN_YEAR); // short is sufficient (16 bits)
+
+        short paymentsMade = 1;
+        while (paymentsMade < numberOfPayments) {
+            double equationTop = Math.pow(1 + monthly, numberOfPayments) - Math.pow(1 + monthly, paymentsMade);
+            double equationBottom = Math.pow(1 + monthly, numberOfPayments) - 1;
+            double balance = principal * (equationTop / equationBottom);
+            paymentsMade++;
+
+//            NumberFormat currency = NumberFormat.getCurrencyInstance(java.util.Locale.US);
+//            String currencyResult = currency.format(balance); // method part of NumberFormat
+//            System.out.println(currencyResult);
+            String convertedBalance = convertToCurrency(balance);
+            System.out.println(convertedBalance);
+        }
+        String finalValue = "$0.00";
+        return finalValue;
     }
 }
-
 
 
 
