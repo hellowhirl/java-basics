@@ -92,17 +92,28 @@ File -> Project Structure
 To run the program:
 
 - go to `out` folder and right click on .jar file and run in terminal
-- Then run below command in terminal
-  
-`$ java -jar HelloWorld.jar`
+- Then run below command in terminal 
 
 
+    $ java -jar HelloWorld.jar
 
+### Programming Paradigms
 
+Object-oriented: units that contain data (state) and methods (behaviour), brought together in a single object
+- Example applications (basic guideline):
+    - creating GUI and games
 
+Functional: opposite approach: assume that Data and Behaviour are fundamentally different so we keep them separated
+- Example applications (basic guideline):
+    - making applications that require high level of reliability
+    - problems that involve messages being passed around and getting transformed along the way
 
+Problem Solving: 
+Process of defining a problem, identifying and comparing different solutions,
+and picking the one that best solves that problem with respect to the context and constraints.
 
-
-
-
+Which programing paradigms we use depends on:
+- problem, context and budget
+- neither works best in both situations
+- best is to learn them both well and to use either depending on problem we are trying to solve
 
