@@ -40,7 +40,7 @@ IntelliJ allows us to refactor method by highlighting related statements and sel
 - Compile-time Erros (syntax, our IDE usually tells us these)
   - Stack Overflow
 - Run-time Errors
-  - Use a tool called "Debugger"
+  - It's Simple, just use a "Debugger"
     
 ### Common erros
 
