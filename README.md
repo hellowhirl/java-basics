@@ -117,3 +117,23 @@ Which programing paradigms we use depends on:
 - neither works best in both situations
 - best is to learn them both well and to use either depending on problem we are trying to solve
 
+## Classes
+
+UML: Unified Modeling Language
+  - a simple visual language that we use in order to show classes and their relationships
+
+`var` keyword is different compared to JavaScript
+  - In Java `var` has a `static` type, so we can't change its type throughout its life in our programs
+
+Primitives in Java
+  - Numbers, booleans, characters
+
+Reference Types in Java
+  - everything else
+
+
+The most common exceptions in Java is `NullPointerException`
+  - happens when we call a method on an object that doesn't exist 
+
+
+
